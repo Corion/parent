@@ -1,3 +1,7 @@
+2.14  Thu Aug  2
+    Commented out "use strict" and "use vars qw()" and "no strict()"
+    Changed @ISA modification to better suit the MRO
+
 2.13  Wed Aug  1
     Forked from base.pm
 

@@ -1,7 +1,7 @@
 package parent;
 use strict;
 use vars qw($VERSION);
-$VERSION = '2.13';
+$VERSION = '2.14';
 
 sub SUCCESS() { 1 };
 
@@ -14,26 +14,34 @@ sub import {
 
     # build list of pairs ( class => module, ...)
     my @bases = map ref() eq 'ARRAY' ? @$_ : ( $_ => $_), @_;
+    my @bases2;
 
     while ( my ( $base, $module) = splice @bases, 0, 2 ) {
         if ( $inheritor eq $base ) {
             warn "Class '$inheritor' tried to inherit from itself\n";
         }
 
-        next if $inheritor->isa($base);
+        #next if $inheritor->isa($base);
 
-        {
-            no strict 'refs';
-            push @{"$inheritor\::ISA"}, $base;
-        };
+        #{
+        #    no strict 'refs';
+        #    push @{"$inheritor\::ISA"}, $base;
+        #};
+	push @bases2, $base;
 
         next unless $module;
 
         # create a filename from the class name
-        (my $filename = $module) =~ s!::|'!/!g;
-        $filename .= ".pm";
-        require $filename; # dies if the file is not found
+        #(my $filename = $module) =~ s!::|'!/!g;
+        #$filename .= ".pm";
+        #require $filename; # dies if the file is not found
+	eval "require $module";
+	die $@ if $@;
     }
+    {
+        no strict 'refs';
+        push @{"$inheritor\::ISA"}, @bases2;
+    };
 };
 
 "All your base are belong to us"

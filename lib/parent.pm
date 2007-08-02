@@ -26,11 +26,11 @@ sub import {
         next unless defined $module;
 
         # create a filename from the class name
-        #(my $filename = $module) =~ s!::|'!/!g;
-        #$filename .= ".pm";
-        #require $filename; # dies if the file is not found
-	eval "require $module";
-	die $@ if $@;
+        (my $filename = $module) =~ s!::|'!/!g;
+        $filename .= ".pm";
+        require $filename; # dies if the file is not found
+	#eval "require $module";
+	#die $@ if $@;
     }
     {
         no strict 'refs';

@@ -15,4 +15,4 @@ my $res = eval q{
 my $error = $@;
 
 is $got_here, undef, "The block did not run to its end.";
-like $error, '/^ReturnsFalse.pm did not return a true value at \(/', "A module that returns a false value raises an error";
+like $error, q{/^ReturnsFalse.pm did not return a true value at /}, "A module that returns a false value raises an error";

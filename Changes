@@ -1,3 +1,12 @@
+    Add a test for (transparently) loading a .pmc
+    Enable the .pmc test only for perls that support it (5.8.x?)
+
+0.215  Thu Aug  2
+    Changed version to a 0.x version to indicate beta status
+    5.004 compatibility patch by Sébastien Aperghis-Tramoni
+    Added a test for a module that returns a false value on load
+    5.9.x performance improvement change - modify @ISA by assignment
+
 2.14  Thu Aug  2
     Commented out "use strict" and "use vars qw()" and "no strict()"
     Changed @ISA modification to better suit the MRO

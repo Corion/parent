@@ -56,15 +56,15 @@ is( $Eval2::VERSION, 1.02 );
 
 
 eval q{use parent 'reallyReAlLyNotexists'};
-like( $@, qr/^Can't locate reallyReAlLyNotexists.pm in \@INC \(\@INC contains:/, 'baseclass that does not exist');
+like( $@, q{/^Can't locate reallyReAlLyNotexists.pm in \@INC \(\@INC contains:/}, 'baseclass that does not exist');
 
 eval q{use parent 'reallyReAlLyNotexists'};
-like( $@, qr/^Can't locate reallyReAlLyNotexists.pm in \@INC \(\@INC contains:/, '  still failing on 2nd load');
+like( $@, q{/^Can't locate reallyReAlLyNotexists.pm in \@INC \(\@INC contains:/}, '  still failing on 2nd load');
 {
     my $warning;
     local $SIG{__WARN__} = sub { $warning = shift };
     eval q{package HomoGenous; use parent 'HomoGenous';};
-    like($warning, qr/^Class 'HomoGenous' tried to inherit from itself/,
+    like($warning, q{/^Class 'HomoGenous' tried to inherit from itself/},
                                           '  self-inheriting');
 }
 

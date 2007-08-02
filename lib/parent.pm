@@ -21,15 +21,9 @@ sub import {
             warn "Class '$inheritor' tried to inherit from itself\n";
         }
 
-        #next if $inheritor->isa($base);
-
-        #{
-        #    no strict 'refs';
-        #    push @{"$inheritor\::ISA"}, $base;
-        #};
 	push @bases2, $base;
 
-        next unless $module;
+        next unless defined $module;
 
         # create a filename from the class name
         #(my $filename = $module) =~ s!::|'!/!g;
@@ -40,7 +34,8 @@ sub import {
     }
     {
         no strict 'refs';
-        push @{"$inheritor\::ISA"}, @bases2;
+	# This is more efficient than push for the new MRO
+        @{"$inheritor\::ISA"} = (@{"$inheritor\::ISA"} , @bases2);
     };
 };
 

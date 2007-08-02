@@ -1,5 +1,5 @@
-package Dummy::Outside;
+package ReturnsFalse;
 
 sub exclaim { "I CAN FROM " . __PACKAGE__ }
 
-1;
+0;

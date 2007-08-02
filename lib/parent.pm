@@ -47,6 +47,13 @@ __END__
 
 parent - Establish an ISA relationship with base classes at compile time
 
+=head1 WARNING
+
+This is a B<beta release>. While the "normal" interface for simple
+inheritance will stay fixed, the interface for loading a class from
+a different class or different file is still in flux as the
+best API has not yet been determined.
+
 =head1 SYNOPSIS
 
     package Baz;

@@ -14,8 +14,8 @@ sub import {
 
     # build list of pairs ( class => module, ...)
     my @bases = map ref() eq 'ARRAY' ? @$_ : ( $_ => $_), @_;
-    my @bases2;
 
+    my @bases2;
     while ( my ( $base, $module) = splice @bases, 0, 2 ) {
         if ( $inheritor eq $base ) {
             warn "Class '$inheritor' tried to inherit from itself\n";
@@ -26,12 +26,10 @@ sub import {
         next unless defined $module;
 
         my $filename = $module;
-	if ($filename !~ m{[./]}) { 
+	if ($filename !~ m{/}) { # the module does not look like a filename?
             # create a filename from the class name
-	    $filename =~ s!::|'!/!g;
-            $filename .= ".pm";
-	} else {
-	    # $module looks like a filename already
+	    $filename =~ s{::|'}{/}g;
+            $filename .= '.pm';
 	};
         require $filename; # dies if the file is not found
     }
@@ -102,9 +100,28 @@ This is equivalent to the following code:
   sub exclaim { "I CAN HAS PERL" }
 
   package DoesNotLoadFoo;
-  push @DoesNotLoadFoo::INC, 'Foo';
+  push @DoesNotLoadFoo::ISA, 'Foo';
 
 The base class' C<import> method is B<not> called.
+
+If you want to load a subclass from a file that C<require> would
+not consider an eligible filename (that is, it does not end in
+either C<.pm> or C<.pmc>), you can specify the filename,
+as long as it contains at least one C</>:
+
+  package MySecondPlugin;
+  use parent [ 'Plugin::Custom' => './plugins/custom.plugin' ];
+
+This is equivalent to the following code:
+
+  package MySecondPlugin;
+  require './plugins/custom.plugin';
+  push @ISA, 'Plugin::Custom';
+
+The determination of whether something is a class name or a filename
+is solely based on whether the second array entry contains
+at least one C</>. This precludes you from using
+class names that contain a forward slash with this package.
 
 =head1 DIAGNOSTICS
 
@@ -136,6 +153,6 @@ Rafaël Garcia-Suarez, Bart Lateur, Max Maischein, Anno Siegel, Michael Schwern
 
 =head1 MAINTAINER
 
-Max Maischein C< corion@corion.net >
+Max Maischein C< corion@cpan.org >
 
 =cut

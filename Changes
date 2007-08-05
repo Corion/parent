@@ -1,5 +1,8 @@
-    Add a test for (transparently) loading a .pmc
     Enable the .pmc test only for perls that support it (5.8.x?)
+0.216  Sun Aug  5
+    Add a test for (transparently) loading a .pmc
+    Loading from an arbitrary file is now possible
+    Class names may not contain a forward slash anymore
 
 0.215  Thu Aug  2
     Changed version to a 0.x version to indicate beta status

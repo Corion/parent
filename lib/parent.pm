@@ -1,7 +1,7 @@
 package parent;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.215';
+$VERSION = '0.216';
 
 sub SUCCESS() { 1 };
 
@@ -25,12 +25,15 @@ sub import {
 
         next unless defined $module;
 
-        # create a filename from the class name
-        (my $filename = $module) =~ s!::|'!/!g;
-        $filename .= ".pm";
+        my $filename = $module;
+	if ($filename !~ m{[./]}) { 
+            # create a filename from the class name
+	    $filename =~ s!::|'!/!g;
+            $filename .= ".pm";
+	} else {
+	    # $module looks like a filename already
+	};
         require $filename; # dies if the file is not found
-	#eval "require $module";
-	#die $@ if $@;
     }
     {
         no strict 'refs';

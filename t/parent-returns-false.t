@@ -8,7 +8,7 @@ use vars qw($got_here);
 my $res = eval q{
     package MyTest;
 
-    use parent ReturnsFalse;
+    use parent 'ReturnsFalse';
 
     $main::got_here++
 };

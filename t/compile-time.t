@@ -10,7 +10,7 @@ use Test::More tests => 3;
 
 {
     package Child;
-    use parent [ 'MyParent' => undef ];
+    use parent -norequire, 'MyParent';
 }
 
 my $obj = {};

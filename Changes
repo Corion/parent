@@ -1,4 +1,11 @@
-    Enable the .pmc test only for perls that support it (5.8.x?)
+0.217  ...
+    + Fixed test failure reported by David Cantrell
+    + Ripped out most of the logic. All you can do
+      is now specify that the base classes should not
+      be loaded from a file via C<-norequire>.
+    + 5.004 compatibility restored by Sébastien Aperghis-Tramoni
+      (mostly it's the test suite that breaks ...)
+
 0.216  Sun Aug  5
     Add a test for (transparently) loading a .pmc
     Loading from an arbitrary file is now possible

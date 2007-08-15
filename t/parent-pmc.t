@@ -1,7 +1,10 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 3;
+use Test::More;
 use lib 't/lib';
+
+plan skip_all => ".pmc are only available with 5.6 and later" if $] < 5.006;
+plan tests => 3;
 
 use vars qw($got_here);
 

@@ -17,7 +17,8 @@ use lib 't/lib';
 
 {
     package Child2;
-    use parent [ 'Dummy::InlineChild' => 'Dummy' ];
+    require Dummy;
+    use parent -norequire, 'Dummy::InlineChild';
 }
 
 {

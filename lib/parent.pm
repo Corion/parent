@@ -1,7 +1,7 @@
 package parent;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.216';
+$VERSION = '0.217';
 
 sub SUCCESS() { 1 };
 
@@ -12,31 +12,33 @@ sub import {
 
     my $inheritor = caller(0);
 
-    # build list of pairs ( class => module, ...)
-    my @bases = map ref() eq 'ARRAY' ? @$_ : ( $_ => $_), @_;
+    my $require = 1;
+    if ($_[0] eq '-norequire') {
+        shift @_;
+        $require = 0;
+    };
 
-    my @bases2;
-    while ( my ( $base, $module) = splice @bases, 0, 2 ) {
+    my @bases;
+    for my $base (@_) {
         if ( $inheritor eq $base ) {
             warn "Class '$inheritor' tried to inherit from itself\n";
         }
 
-	push @bases2, $base;
+	push @bases, $base;
 
-        next unless defined $module;
-
-        my $filename = $module;
-	if ($filename !~ m{/}) { # the module does not look like a filename?
+        if ($require) {
             # create a filename from the class name
+            my $filename = $base;
 	    $filename =~ s{::|'}{/}g;
             $filename .= '.pm';
+            require $filename; # dies if the file is not found
 	};
-        require $filename; # dies if the file is not found
     }
     {
         no strict 'refs';
 	# This is more efficient than push for the new MRO
-        @{"$inheritor\::ISA"} = (@{"$inheritor\::ISA"} , @bases2);
+	# at least until the new MRO is fixed
+        @{"$inheritor\::ISA"} = (@{"$inheritor\::ISA"} , @bases);
     };
 };
 
@@ -50,10 +52,9 @@ parent - Establish an ISA relationship with base classes at compile time
 
 =head1 WARNING
 
-This is a B<beta release>. While the "normal" interface for simple
-inheritance will stay fixed, the interface for loading a class from
-a different class or different file is still in flux as the
-best API has not yet been determined.
+This is a B<beta release>. While I consider the interface
+now fixed, this is not entirely sure - minor changes to C<-norequire>
+may still happen.
 
 =head1 SYNOPSIS
 
@@ -73,11 +74,30 @@ those modules at the same time.  Mostly similar in effect to
     }
 
 By default, every base class needs to live in a file of its own.
-If you want to subclass a package that lives in a differently
-named module, you can use the following syntax to inherit from it:
+If you want to have a subclass and its parent class in the same file, you
+can tell C<parent> not to load any modules by using the C<-norequire> switch:
+
+  package Foo;
+  sub exclaim { "I CAN HAS PERL" }
+
+  package DoesNotLoadFooBar;
+  use parent -norequire, 'Foo', 'Bar';
+  # will not go looking for Foo.pm or Bar.pm
+
+This is equivalent to the following code:
+
+  package Foo;
+  sub exclaim { "I CAN HAS PERL" }
+
+  package DoesNotLoadFooBar;
+  push @DoesNotLoadFooBar::ISA, 'Foo';
+
+This is also helpful for the case where a package lives within
+a differently named file:
 
   package MyHash;
-  use parent [ 'Tie::StdHash' => 'Tie::Hash' ];
+  use Tie::Hash;
+  use parent -norequire, 'Tie::StdHash';
 
 This is equivalent to the following code:
 
@@ -85,43 +105,13 @@ This is equivalent to the following code:
   require Tie::Hash;
   push @ISA, 'Tie::StdHash';
 
-If you want to have a subclass and its parent class in the same file, you
-can tell C<parent> not to load a class in the following way:
-
-  package Foo;
-  sub exclaim { "I CAN HAS PERL" }
-
-  package DoesNotLoadFoo;
-  use parent [ Foo => undef ]; # will not go looking for Foo.pm
-
-This is equivalent to the following code:
-
-  package Foo;
-  sub exclaim { "I CAN HAS PERL" }
-
-  package DoesNotLoadFoo;
-  push @DoesNotLoadFoo::ISA, 'Foo';
-
-The base class' C<import> method is B<not> called.
-
 If you want to load a subclass from a file that C<require> would
 not consider an eligible filename (that is, it does not end in
-either C<.pm> or C<.pmc>), you can specify the filename,
-as long as it contains at least one C</>:
+either C<.pm> or C<.pmc>), use the following code:
 
   package MySecondPlugin;
-  use parent [ 'Plugin::Custom' => './plugins/custom.plugin' ];
-
-This is equivalent to the following code:
-
-  package MySecondPlugin;
-  require './plugins/custom.plugin';
-  push @ISA, 'Plugin::Custom';
-
-The determination of whether something is a class name or a filename
-is solely based on whether the second array entry contains
-at least one C</>. This precludes you from using
-class names that contain a forward slash with this package.
+  require './plugins/custom.plugin'; # contains Plugin::Custom
+  use parent -norequire, 'Plugin::Custom';
 
 =head1 DIAGNOSTICS
 

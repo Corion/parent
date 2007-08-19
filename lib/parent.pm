@@ -1,44 +1,31 @@
 package parent;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.217';
-
-sub SUCCESS() { 1 };
+$VERSION = '0.218';
 
 sub import {
     my $class = shift;
 
-    return SUCCESS unless @_;
-
     my $inheritor = caller(0);
 
-    my $require = 1;
-    if ($_[0] eq '-norequire') {
+    if ( @_ and $_[0] eq '-norequire' ) {
         shift @_;
-        $require = 0;
-    };
+    } else {
+        for ( my @filename = @_ ) {
+            if ( $_ eq $inheritor ) {
+                warn "Class '$inheritor' tried to inherit from itself\n";
+            };
 
-    my @bases;
-    for my $base (@_) {
-        if ( $inheritor eq $base ) {
-            warn "Class '$inheritor' tried to inherit from itself\n";
+            s{::|'}{/}g;
+            require "$_.pm"; # dies if the file is not found
         }
-
-	push @bases, $base;
-
-        if ($require) {
-            # create a filename from the class name
-            my $filename = $base;
-	    $filename =~ s{::|'}{/}g;
-            $filename .= '.pm';
-            require $filename; # dies if the file is not found
-	};
     }
+
     {
         no strict 'refs';
-	# This is more efficient than push for the new MRO
-	# at least until the new MRO is fixed
-        @{"$inheritor\::ISA"} = (@{"$inheritor\::ISA"} , @bases);
+        # This is more efficient than push for the new MRO
+        # at least until the new MRO is fixed
+        @{"$inheritor\::ISA"} = (@{"$inheritor\::ISA"} , @_);
     };
 };
 

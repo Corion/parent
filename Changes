@@ -1,3 +1,7 @@
+0.220  20080304
+    . No functional changes, no need to upgrade
+    + Removed beta status
+
 0.219  20071020
     . No functional changes, no need to upgrade
     + Added LICENSE section to clarify the license of this code

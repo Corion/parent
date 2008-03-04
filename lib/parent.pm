@@ -1,7 +1,7 @@
 package parent;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.219';
+$VERSION = '0.220';
 
 sub import {
     my $class = shift;
@@ -36,12 +36,6 @@ __END__
 =head1 NAME
 
 parent - Establish an ISA relationship with base classes at compile time
-
-=head1 WARNING
-
-This is a B<beta release>. While I consider the interface
-now fixed, this is not entirely sure - minor changes to C<-norequire>
-may still happen.
 
 =head1 SYNOPSIS
 
@@ -131,8 +125,6 @@ Rafaël Garcia-Suarez, Bart Lateur, Max Maischein, Anno Siegel, Michael Schwern
 =head1 MAINTAINER
 
 Max Maischein C< corion@cpan.org >
-
-=head1 AUTHOR
 
 Copyright (c) 2007 Max Maischein C<< <corion@cpan.org> >>
 Based on the idea of C<base.pm>, which was introduced with Perl 5.004_04.

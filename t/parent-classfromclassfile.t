@@ -1,16 +1,16 @@
 #!/usr/bin/perl -w
 
 BEGIN {
-   if( $ENV{PERL_CORE} ) {
+    if( $ENV{PERL_CORE} ) {
         chdir 't' if -d 't';
-        @INC = qw(../lib lib);
-    } else {
-        push @INC, 't/lib';
-    };
+        chdir '../lib/parent';
+        @INC = '..';
+    }
 }
 
 use strict;
 use Test::More tests => 3;
+use lib 't/lib';
 
 use_ok('parent');
 

@@ -1,21 +1,20 @@
 #!/usr/bin/perl -w
 
-my $base;
 BEGIN {
-   if( $ENV{PERL_CORE} ) {
+    if( $ENV{PERL_CORE} ) {
         chdir 't' if -d 't';
-        @INC = qw(../lib lib);
-	$base = '.';
-    } else {
-        push @INC, 't/lib';
-	$base = './t';
-    };
+        chdir '../lib/parent';
+        @INC = '..';
+    }
 }
 
 use strict;
 use Test::More tests => 4;
+use lib 't/lib';
 
 use_ok('parent');
+
+my $base = './t';
 
 # Tests that a bare (non-double-colon) class still loads
 # and does not get treated as a file:

@@ -1,6 +1,9 @@
-0.221  20080403
+0.222  20090828
     . No functional changes, no need to upgrade
     + Documentation fix suggested by Clinton Gormley
+    + Test fix for Perl compiled without PMC support,
+      spotted and fixed by Nicholas Clark
+    + Distribution changes to placate Module::Release
 
 0.221  20080306
     . No functional changes, no need to upgrade

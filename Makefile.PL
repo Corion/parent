@@ -39,3 +39,5 @@ WriteMakefile(
         return $out;
     }
 }
+
+1; # so you can require this Makefile.PL

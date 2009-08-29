@@ -1,1 +1,7 @@
 CVS
+blib
+pm_to_blib
+MANIFEST.bak
+Makefile
+parent-*.tar.gz
+parent/

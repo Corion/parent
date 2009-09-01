@@ -1,3 +1,9 @@
+0.223  20090901
+    . No functional changes, no need to upgrade
+    + Fix Makefile.PL so that (re)installing parent under 5.10.1+
+      installs into perl/ instead of site/, patched by J.D.Hedden
+      fixes RT #49328
+
 0.222  20090828
     . No functional changes, no need to upgrade
     + Documentation fix suggested by Clinton Gormley

@@ -11,7 +11,7 @@ WriteMakefile(
     NAME            => 'parent',
     VERSION_FROM    => "lib/parent.pm", # finds $VERSION
     PREREQ_PM       => { Test::More => 0.40 },
-    INSTALLDIRS => ($] >= 5.011 ? 'perl' : 'site'),
+    INSTALLDIRS => ($] >= 5.010001 ? 'perl' : 'site'),
 );
 
 # Leftover voodoo for testing various Perl distributions

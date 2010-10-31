@@ -31,6 +31,8 @@ sub import {
 
 __END__
 
+=encoding utf8
+
 =head1 NAME
 
 parent - Establish an ISA relationship with base classes at compile time
@@ -118,7 +120,7 @@ L<base>
 
 =head1 AUTHORS AND CONTRIBUTORS
 
-Rafaël Garcia-Suarez, Bart Lateur, Max Maischein, Anno Siegel, Michael Schwern
+RafaÃ«l Garcia-Suarez, Bart Lateur, Max Maischein, Anno Siegel, Michael Schwern
 
 =head1 MAINTAINER
 

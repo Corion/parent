@@ -23,9 +23,7 @@ sub import {
 
     {
         no strict 'refs';
-        # This is more efficient than push for the new MRO
-        # at least until the new MRO is fixed
-        @{"$inheritor\::ISA"} = (@{"$inheritor\::ISA"} , @_);
+        push @{"$inheritor\::ISA"}, @_;
     };
 };
 

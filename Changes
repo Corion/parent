@@ -1,3 +1,10 @@
+0.224  20101031
+    . Change assignment @ISA = (@ISA, 'new::class')
+      to use push @ISA, 'new::class'
+      This should make class creation faster from 5.10 onwards
+      and reverts a change made in 2.14. If this is critically slow for you
+      and you can't upgrade your version of Perl, use the old way.
+
 0.223  20090901
     . No functional changes, no need to upgrade
     + Fix Makefile.PL so that (re)installing parent under 5.10.1+

@@ -124,7 +124,7 @@ Rafaël Garcia-Suarez, Bart Lateur, Max Maischein, Anno Siegel, Michael Schwern
 
 Max Maischein C< corion@cpan.org >
 
-Copyright (c) 2007 Max Maischein C<< <corion@cpan.org> >>
+Copyright (c) 2007-10 Max Maischein C<< <corion@cpan.org> >>
 Based on the idea of C<base.pm>, which was introduced with Perl 5.004_04.
 
 =head1 LICENSE

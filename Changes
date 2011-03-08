@@ -1,3 +1,8 @@
+0.225  20110308
+    . Applied a docpatch by Robin Barker to fix the documentation
+      about the warning of inheriting from yourself.
+      Fixes RT #66459
+
 0.224  20101031
     . Change assignment @ISA = (@ISA, 'new::class')
       to use push @ISA, 'new::class'

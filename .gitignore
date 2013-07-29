@@ -8,3 +8,4 @@ parent-*.tar.gz
 parent-*.tar
 parent/
 parent-*/
+MYMETA.*

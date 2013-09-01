@@ -1,3 +1,7 @@
+0.227  20130991
+    . Fix RT #88320, restore tests passing for 5.17.5+
+      Thanks to Zefram for the report and contributing the fix
+
 0.226  20130729
     . Fix RT #86890, restore tests passing for 5.18+
       Thanks to Petr Pisar for the report

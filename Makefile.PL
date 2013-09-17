@@ -11,7 +11,10 @@ WriteMakefile(
     NAME            => 'parent',
     VERSION_FROM    => "lib/parent.pm", # finds $VERSION
     PREREQ_PM       => { Test::More => 0.40 },
-    INSTALLDIRS => ($] >= 5.010001 ? 'perl' : 'site'),
+    # parent.pm joined the core with 5.10.1
+    # 5.12 fixed the @INC order so that site/ comes before perl/
+    # So we only install into perl/ for versions between the two
+    INSTALLDIRS => ($] >= 5.010001 and $] < 5.012 ? 'perl' : 'site'),
 );
 
 # Leftover voodoo for testing various Perl distributions

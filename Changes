@@ -1,4 +1,8 @@
-0.227  20130991
+0.228  20130917
+    . Fix RT #88450, install into site/ for 5.12+
+      Thanks to haarg for the report
+
+0.227  20130901
     . Fix RT #88320, restore tests passing for 5.17.5+
       Thanks to Zefram for the report and contributing the fix
 

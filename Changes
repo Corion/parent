@@ -1,3 +1,10 @@
+0.229  20150307
+    . Add link to (Github) repository
+      Thanks to Neil Bowers for the idea
+    . Guard tests against PERL_DISABLE_PMC
+      Contributed by Bulk88
+    . No code changes, no need to upgrade
+
 0.228  20130917
     . Fix RT #88450, install into site/ for 5.12+
       Thanks to haarg for the report

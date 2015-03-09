@@ -1,3 +1,9 @@
+0.230  20150309
+    . Restore test compatibility where Perl does not provide
+      &Config::non_bincompat_options. This affected Perl
+      versions < 5.14 (RT #102626)
+    . No code changes, no need to upgrade
+
 0.229  20150307
     . Add link to (Github) repository
       Thanks to Neil Bowers for the idea

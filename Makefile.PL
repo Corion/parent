@@ -22,6 +22,21 @@ WriteMakefile1(
         'resources' => {
             'repository' => 'https://github.com/Corion/parent',
         },
+        'prereqs' => {
+            test => {
+                recommends => {
+                    # For t/parent-pmc.t
+                    'Config::Perl::V' => '0.10',
+                },
+                # We want smokers to not skip the t/parent-pmc.t
+                # So we make this dependency mandatory for them
+                (
+                    requires => {
+                        'Config::Perl::V' => '0.10',
+                    },
+                ) x!! ($ENV{SMOKE_TESTING} && $] lt '5.014' && $] ge '5.006'),
+            },
+        }
     },
 );
 

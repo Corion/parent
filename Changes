@@ -1,3 +1,8 @@
+0.232  20150319
+    . Change line-endings in parent-pmc.t to unix EOLs so that bleadperl
+      is happy
+    . No code changes, no need to upgrade
+
 0.231  20150309
     . Really restore test compatibility where Perl does not provide
       &Config::non_bincompat_options. This affected Perl

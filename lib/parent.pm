@@ -23,7 +23,7 @@ sub import {
     };
 };
 
-"All your base are belong to us"
+1;
 
 __END__
 

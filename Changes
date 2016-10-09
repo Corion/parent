@@ -1,3 +1,8 @@
+0.235 20161009
+    . Add Travis test configuration (contributed by James McCoy)
+    . Make test for PMC availability more reliable (contibuted by E. Choroba)
+    . No code changes, no need to upgrade
+
 0.234 20150527
     . Fix the test for PMC loading to work on versions on Perl that don't
       have Config::non_bincompat_options (HAARG). Fixes RT#102626 .

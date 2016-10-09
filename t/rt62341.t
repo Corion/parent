@@ -1,6 +1,7 @@
 #!perl -w
 use strict;
 use Benchmark qw/cmpthese/;
+use Test::More tests => 1;
 
 {
     package Bench::Base;
@@ -96,3 +97,5 @@ cmpthese (-1 => {
         }
     },
 });
+
+pass "Benchmarks run";

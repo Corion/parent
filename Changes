@@ -1,7 +1,11 @@
-0.233  to be released
-    + Remove custom circular @ISA check
-      Perl checks for circular @ISA since 5.0 anyway
-      Contributed by Aristotle Pagaltzis
+0.234 20150527
+    . Fix the test for PMC loading to work on versions on Perl that don't
+      have Config::non_bincompat_options (HAARG). Fixes RT#102626 .
+
+0.233 20150525
+    ! The diagnostic about inheriting from ourselves was removed.
+      It served no own purpose as Perl already warns if we try to
+      inherit in a circular way.
 
 0.232  20150319
     . Change line-endings in parent-pmc.t to unix EOLs so that bleadperl

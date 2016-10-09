@@ -6,6 +6,7 @@
     ! The diagnostic about inheriting from ourselves was removed.
       It served no own purpose as Perl already warns if we try to
       inherit in a circular way.
+      Contributed by Aristoteles Pagaltzis
 
 0.232  20150319
     . Change line-endings in parent-pmc.t to unix EOLs so that bleadperl

@@ -21,4 +21,4 @@ requires:
   Test::More: '0.4'
 resources:
   repository: https://github.com/Corion/parent
-version: '0.235'
+version: '0.236'

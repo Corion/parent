@@ -19,7 +19,7 @@ t/parent-classfromfile.t
 t/parent-pmc.t
 t/parent-returns-false.t
 t/parent.t
-t/rt62341.t
+t/rt62341.t.disabled
 xt/99-changes.t
 xt/99-compile.t
 xt/99-manifest.t

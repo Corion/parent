@@ -1,3 +1,8 @@
+0.233  to be released
+    + Remove custom circular @ISA check
+      Perl checks for circular @ISA since 5.0 anyway
+      Contributed by Aristotle Pagaltzis
+
 0.232  20150319
     . Change line-endings in parent-pmc.t to unix EOLs so that bleadperl
       is happy

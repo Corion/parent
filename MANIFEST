@@ -19,3 +19,4 @@ t/parent-classfromfile.t
 t/parent-pmc.t
 t/parent-returns-false.t
 t/parent.t
+t/rt62341.t

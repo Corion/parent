@@ -16,6 +16,7 @@ WriteMakefile1(
             'repository' => 'https://github.com/Corion/parent',
         },
     },
+    MIN_PERL_VERSION => '5.006', # We use "our" in some places
 );
 
 1;
@@ -54,10 +55,7 @@ sub WriteMakefile1 {  #Written by Alexandr Ciornii, version 0.21.
         push @perls, qw(bleadperl
                         perl5.6.1
                         perl5.6.0
-                        perl5.005_03
-                        perl5.004_05
-                        perl5.004_04
-                        perl5.004)
+          )
           if $ENV{PERL_TEST_ALL};
 
         my $out;

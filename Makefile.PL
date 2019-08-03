@@ -40,7 +40,7 @@ sub WriteMakefile1 {  #Written by Alexandr Ciornii, version 0.21.
     delete $params{AUTHOR} if $] < 5.005;
     delete $params{ABSTRACT_FROM} if $] < 5.005;
     delete $params{BINARY_LOCATION} if $] < 5.005;
-    
+
     WriteMakefile(%params);
 }
 

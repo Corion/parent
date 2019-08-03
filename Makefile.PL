@@ -11,10 +11,17 @@ WriteMakefile1(
     # So we only install into perl/ for versions between the two
     'INSTALLDIRS' => ($] >= 5.010001 and $] < 5.012 ? 'perl' : 'site'),
     'LICENSE'       => 'perl',
-     'META_MERGE' => {
-        'resources' => {
-            'repository' => 'https://github.com/Corion/parent',
+    META_MERGE => {
+        "meta-spec" => { version => 2 },
+        resources => {
+            repository => {
+                web => "https://github.com/Corion/parent",
+                url => "git://github.com/Corion/parent.git",
+                type => 'git',
+            }
         },
+        dynamic_config   => 0, # we promise to keep META.* up-to-date
+        x_static_install => 1, # we are pure Perl and don't do anything fancy
     },
     MIN_PERL_VERSION => '5.006', # We use "our" in some places
 );

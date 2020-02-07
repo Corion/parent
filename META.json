@@ -32,8 +32,12 @@
       },
       "runtime" : {
          "requires" : {
-            "Test::More" : "0.4",
             "perl" : "5.006"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0.40"
          }
       }
    },
@@ -45,7 +49,7 @@
          "web" : "https://github.com/Corion/parent"
       }
    },
-   "version" : "0.237",
-   "x_serialization_backend" : "JSON::PP version 2.97001",
+   "version" : "0.238",
+   "x_serialization_backend" : "JSON::PP version 4.04",
    "x_static_install" : 1
 }

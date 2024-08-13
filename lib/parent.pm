@@ -12,6 +12,7 @@ sub import {
         shift @_;
     } else {
         for ( my @filename = @_ ) {
+            local @_; # protect us against the loaded module changing @_
             s{::|'}{/}g;
             require "$_.pm"; # dies if the file is not found
         }

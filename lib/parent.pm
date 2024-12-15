@@ -6,8 +6,6 @@ our $VERSION = '0.242';
 sub import {
     shift;
 
-    my $inheritor = caller(0);
-
     if ( @_ and $_[0] eq '-norequire' ) {
         shift @_;
     } else {
@@ -20,7 +18,7 @@ sub import {
 
     {
         no strict 'refs';
-        push @{"$inheritor\::ISA"}, @_; # dies if a loop is detected
+        push @{caller.'::ISA'}, @_; # dies if a loop is detected
     }
 }
 

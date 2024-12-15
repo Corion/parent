@@ -7,7 +7,7 @@ sub import {
     shift;
 
     if ( @_ and $_[0] eq '-norequire' ) {
-        shift @_;
+        shift;
     } else {
         for ( my @filename = @_ ) {
             local @_; # protect us against the loaded module changing @_

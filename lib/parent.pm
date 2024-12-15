@@ -4,7 +4,7 @@ use strict;
 our $VERSION = '0.242';
 
 sub import {
-    my $class = shift;
+    shift;
 
     my $inheritor = caller(0);
 

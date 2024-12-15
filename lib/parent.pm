@@ -12,7 +12,8 @@ sub import {
         for ( my @filename = @_ ) {
             local @_; # protect us against the loaded module changing @_
             s{::|'}{/}g;
-            require "$_.pm"; # dies if the file is not found
+            $_.='.pm';
+            require; # dies if the file is not found
         }
     }
 

@@ -21,8 +21,8 @@ sub import {
     {
         no strict 'refs';
         push @{"$inheritor\::ISA"}, @_; # dies if a loop is detected
-    };
-};
+    }
+}
 
 1;
 

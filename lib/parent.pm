@@ -12,14 +12,14 @@ sub import {
         for ( my @filename = @_ ) {
             local @_; # protect us against the loaded module changing @_
             s{::|'}{/}g;
-            $_.='.pm';
+            $_ .= '.pm';
             require; # dies if the file is not found
         }
     }
 
     {
         no strict 'refs';
-        push @{caller.'::ISA'}, @_; # dies if a loop is detected
+        push @{caller . '::ISA'}, @_; # dies if a loop is detected
     }
 }
 
